@@ -1,0 +1,185 @@
+define problem
+
+get data
+get more data
+
+train test split-gold standard(this is cross validation)
+do a grid search on the train test split
+
+munge data-NaNs, duplicates, Data types
+
+eda-->feature selection, feature engineering, abnormal data
+
+can start a pipeline here
+
+preprocess-scaling, NLP, Dummies, (Impute-fill in missing values)
+for impute scikitlearn has a tool to fill in averages
+MICE-multiple imputation changing 
+
+model
+Tune
+grid search or randomized search 
+-------------------------------------------------------------------
+
+Define a problem
+5 Ws
+Target(what am I predicting?)
+problem type(classification, regression, clustering)
+Data type(continuous or discrete)
+Are we trying to make a prediction or inferences
+Hypothesis
+Testable(H-0 H-A)--Success metric
+
+-------------------------------------------------------------------
+
+Getting data
+
+Webscraping
+Flat files(csv)
+Databases
+API's(json)
+
+-------------------------------------------------------------------
+
+Cross validation
+
+Train test split
+KFolds(cross_val_score, gridSearchCV)
+-->Train-->Validation(tuning)-->Test
+Time sensitive
+Split proportions? (goal is to maximize the available training data,
+                    avoid spurious conclusions/flukes
+
+-------------------------------------------------------------------
+
+Munge and EDA
+
+Missing values--Drop columns, Impute values, Data types
+Map
+Apply
+Astype()
+try/except
+Duplicates
+Outliers-->can make a cutoff and use a different model for the outliers
+
+-------------------------------------------------------------------
+
+Feature Engineering & Selection
+
+Pandas-map(passes values one cell at a time), apply(passes the list to a function
+		if that doesn't work it passes the whole list), applymap
+Think
+Dates(month, week, day, hour)datetime
+Interactions-PATSY
+Y~(A+B+C)(A+B+C)
+itertools-combinations
+NLP-countvectorizer, hashvectorizer, tfidf, stemming, nltk,
+	sentiment, pos, spacy, count Capitals, punctuation, length
+CNNs
+clustering
+Dummies
+
+Selection-feature importance
+ coeffecients 
+hyp test 
+adjusted R2
+regularization
+select kBest
+CrossVal-high bias/high var(add or remove features)
+
+-------------------------------------------------------------------
+
+Preprocess
+
+Any of the above that you can automate
+Scaling
+Imputing
+
+-------------------------------------------------------------------
+
+Modeling
+
+1.Regression
+GLM's(scale if regularized)
+RF
+kNN(scale)
+Trees of all sorts
+SVM-rare for regression(Scale)
+NN's(scale)
+adaBoost(scale)
+S?GradDesc(scale)
+Gradient Boosting(scale)
+
+2.Classification
+GLMs
+RF
+kNN
+Tree
+SVM
+NNs
+Boosting
+Bagging
+Multinomial Naive Bayes
+
+3. Clustering
+kMeans
+Heirarchical/Agglomerative
+DBscan
+LDA
+PCA
+
+-------------------------------------------------------------------
+
+Tuning
+
+Optimize Hyperparameters
+Feature selection
+Grid Search
+Randomize Search
+Cross Val
+
+-------------------------------------------------------------------
+
+Conclusion
+
+Feature importance
+Evaluate Performance
+-->Metrics
+-->Example use case
+     -->tie to Business outcomes
+Coefficients
+Going forward/pitfalls-Model Improvements, Data improvements, Other studies
+
+
+-------------------------------------------------------------------
+
+Metrics[min, Baseline, max]
+
+Dummy Regressor()
+
+Regression
+R2[neg inf, 0 , 1]Maximum is better
+Adj R2 ""
+MSE[0, ?, inf]Min is better
+RMSE ""
+SSE ""
+MAE ""
+predict w/mean to find BL
+Deviance
+
+Classification
+Accuracy(Default)
+Precision
+Sensitivity
+Specificity
+AUCROC(predict_proba)
+Misclass Rate
+Confusion Matrix
+F1 Score
+
+Cluster
+Silhouette
+Inertia
+--cohesion
+--seperation
+cophenetic correlation coefficient
